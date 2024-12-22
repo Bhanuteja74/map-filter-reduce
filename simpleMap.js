@@ -56,8 +56,20 @@ const charCodesOf = function (strings) {
 };
 
 // extract domain names from ["user1@gmail.com", "admin@yahoo.com"] => ["gmail.com", "yahoo.com"]
+const getDomian = function (email) {
+  const start = email.indexOf('@') + 1;
+
+  return email.slice(start);
+}
+
 const domainNamesOf = function (emails) {
-  return emails.map((email) => email.split('@').at(-1));
+  return emails.map(getDomian);
+};
+
+// split words in ["hello world", "goodbye moon"] => [["hello", "world"], ["goodbye", "moon"]]
+const splitWordsOf = function (strings) {
+  const splitWord = (string) => string.split(' ');
+  return strings.map(splitWord);
 };
 
 // --------- test Cases --------
@@ -71,6 +83,7 @@ testCases.push([doubleLettersOf, ['', 'abc', 'a'], doubleLettersOf(['', 'abc', '
 testCases.push([negatedBooleansOf, [true, false], negatedBooleansOf([true, false]), [false, true]]);
 testCases.push([charCodesOf, ['a', 'bd', 'c'], charCodesOf(['a', 'b', 'c']), [97, 98, 99]]);
 testCases.push([domainNamesOf, ["user1@gmail.com", "admin@yahoo.com"], domainNamesOf(["user1@gmail.com", "admin@yahoo.com"]), ["gmail.com", "yahoo.com"]]);
+testCases.push([splitWordsOf, ['a', 'a b', 'ab c', ''], splitWordsOf(['a', 'a b', 'ab c', '']), [['a'], ['a', 'b'], ['ab', 'c'], ['']]]);
 
 // --------- failed test Cases ------
 //[function Name,  list,  Expected, Actual]
@@ -98,10 +111,10 @@ const areEqual = function (elementOne, elementTwo) {
   return elementOne === elementTwo;
 }
 
-testCases.forEach(function ([fun, input, expected, actual]) {
-  if (!areEqual(actual, expected)) {
+testCases.forEach(function ([fun, input, actual, expected]) {
+  if (!areEqual(expected, actual)) {
     failed.push({
-      FUNCTION: fun, 'GIVEN LIST': input, EXPECTED: expected, ACTUAL: actual
+      FUNCTION: fun, 'GIVEN LIST': input, ACTUAL: actual, EXPECTED: expected
     });
   }
 });
