@@ -25,6 +25,10 @@ const averageOf = function (numbers) {
   // return sumOf(numbers) / numbers.length;
 }
 
+testCases.push([averageOf, [1, 2, 3], 2, averageOf([1, 2, 3])])
+testCases.push([averageOf, [1, 2, 3, 5], 2.75, averageOf([1, 2, 3, 5])])
+testCases.push([averageOf, [1, 2, 3, 0], 1.5, averageOf([1, 2, 3, 0])])
+
 // minOf([3, 1, 4, 1, 5, 9, 2]) => 1
 const minOf = function (numbers) { }
 
