@@ -67,8 +67,8 @@ const domainNamesOf = function (emails) {
 };
 
 // split words in ["hello world", "goodbye moon"] => [["hello", "world"], ["goodbye", "moon"]]
+const splitWord = (string) => string.split(' ');
 const splitWordsOf = function (strings) {
-  const splitWord = (string) => string.split(' ');
   return strings.map(splitWord);
 };
 
