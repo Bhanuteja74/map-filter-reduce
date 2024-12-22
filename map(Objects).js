@@ -18,7 +18,14 @@ const firstLettersOfNames = function (objects) {
   return objects.map(firstCharOfName);
 };
 
+// calculate areas from [{ width: 2, height: 3 }, { width: 4, height: 5 }] => [6, 20]
+const rectangleArea = (dimensions) => dimensions.width * dimensions.height;
+const calculateAreas = function (rectangles) {
+  return rectangles.map(rectangleArea);
+};
+
 // -------- test Cases --------
+testCases.push([calculateAreas, [{ width: 2, height: 3 }, { width: 4, height: 5 }], calculateAreas([{ width: 2, height: 3 }, { width: 4, height: 5 }]), [6, 20]]);
 testCases.push([firstLettersOfNames, [{ name: "Alice" }, { name: "Bob" }], firstLettersOfNames([{ name: "Alice" }, { name: "Bob" }]), ["A", "B"]]);
 testCases.push([extractAges, [{ age: 25 }, { age: 30 }], extractAges([{ age: 25 }, { age: 30 }]), [25, 30]]);
 testCases.push([extractNames, [{ name: "Alice" }, { name: "Bob" }], extractNames([{ name: "Alice" }, { name: "Bob" }]), ["Alice", "Bob"]]);
