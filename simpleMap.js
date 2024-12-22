@@ -1,5 +1,11 @@
 const testCases = [];
 
+const invert = function (f) {
+  return function (...args) {
+    return !f(...args)
+  }
+}
+
 // squares of [1, 2, 3] => [1, 4, 9]
 const square = (x) => x * x;
 const squaresOf = function (numbers) {
@@ -85,7 +91,8 @@ const repeatedStringsOf = function (strings) {
 };
 
 // count vowels in ["apple", "banana", "grape"] => [2, 3, 2]
-const incrementIfVowel = (count, char) => 'aeiou'.includes(char) ? count + 1 : count;
+const isVowel = (char) => 'aeiou'.includes(char);
+const incrementIfVowel = (count, char) => isVowel(char) ? count + 1 : count;
 const vowelsCount = function (string) {
   return [...string].reduce(incrementIfVowel, 0);
 };
@@ -100,7 +107,29 @@ const reversedArraysOf = function (arrays) {
 };
 
 // remove vowels from ["apple", "banana", "grape"] => ["ppl", "bnn", "grp"]
-const withoutVowelsOf = function (strings) { };
+const removeVowels = function (string) {
+  const isNotVowel = invert(isVowel)
+  return [...string].filter(isNotVowel).join('');
+};
+
+const withoutVowelsOf = function (strings) {
+  return strings.map(removeVowels);
+};
+
+// cumulative sums of [[1, 2, 3], [4, 5, 6]] => [[1, 3, 6], [4, 9, 15]]
+// Example: cumulative sum of [1, 2, 3] is [1, 1+2, 1+2+3]
+const addRunningTotal = function (array, num) {
+  array.push(array.at(-1) + num);
+
+  return array;
+};
+const runningTotal = function (numbers) {
+  return numbers.reduce(addRunningTotal, [0]).slice(1);
+};
+
+const cumulativeSumsOf = function (arrays) {
+  return arrays.map(runningTotal);
+};
 
 // --------- test Cases --------
 // testCases.push([squaresOf, [0, 1, 2, 3, 4], squaresOf([0, 1, 2, 3, 4]), [0, 1, 4, 9, 16]]);
@@ -118,6 +147,8 @@ const withoutVowelsOf = function (strings) { };
 // testCases.push([repeatedStringsOf, ['ab', 'a', ' ', ''], repeatedStringsOf(['ab', 'a', ' ', '']), ['abab', 'aa', '  ', '']]);
 testCases.push([countVowelsOf, ["apple", "banana", "grape"], countVowelsOf(["apple", "banana", "grape"]), [2, 3, 2]]);
 testCases.push([reversedArraysOf, [[1, 2, 3], [4, 5, 6]], reversedArraysOf([[1, 2, 3], [4, 5, 6]]), [[3, 2, 1], [6, 5, 4]]]);
+testCases.push([withoutVowelsOf, ["apple", "banana", "grape"], withoutVowelsOf(["apple", "banana", "grape"]), ["ppl", "bnn", "grp"]]);
+testCases.push([cumulativeSumsOf, [[1, 2, 3], [4, 5, 6]], cumulativeSumsOf([[1, 2, 3], [4, 5, 6]]), [[1, 3, 6], [4, 9, 15]]]);
 
 // --------- failed test Cases ------
 //[function Name,  list,  Expected, Actual]
