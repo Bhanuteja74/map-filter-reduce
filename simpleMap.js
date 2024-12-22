@@ -31,12 +31,27 @@ const truthValuesOf = function (numbers) {
   return numbers.map(truthyValue);
 };
 
+// reverse strings of ["hello", "world"] => ["olleh", "dlrow"]
+const stringReverse = (string) => [...string].reverse().join('');
+const reversedStringsOf = function (strings) {
+  return strings.map(stringReverse);
+};
+
+// double letters of ["cat", "dog", "bat"] => ["ccaat", "ddoog", "bbaatt"]
+const stringDouble = (string) => string.repeat(2);
+const doubleLetterString = (string) => [...string].map(stringDouble).join('');
+const doubleLettersOf = function (strings) {
+  return strings.map(doubleLetterString);
+};
+
 // --------- test Cases --------
 testCases.push([squaresOf, [0, 1, 2, 3, 4], squaresOf([0, 1, 2, 3, 4]), [0, 1, 4, 9, 16]]);
 testCases.push([lengthsOf, ['a', 'ab', '', 'abc'], lengthsOf(['a', 'ab', '', 'abc']), [1, 2, 0, 3]]);
 testCases.push([uppercaseOf, ['a', 'ab', '', 'abc'], uppercaseOf(['a', 'ab', '', 'abc']), ['A', 'AB', '', 'ABC']]);
 testCases.push([firstCharactersOf, ['abc', 'a', ''], firstCharactersOf(['abc', 'a', '']), ['a', 'a', '']]);
 testCases.push([truthValuesOf, ['', 'a', 1, 0, true, false], truthValuesOf(['', 'a', 1, 0, true, false]), [true, true, true, false, true, false]]);
+testCases.push([reversedStringsOf, ['', 'abc', 'a'], reversedStringsOf(['', 'abc', 'a']), ['', 'cba', 'a']]);
+testCases.push([doubleLettersOf, ['', 'abc', 'a'], doubleLettersOf(['', 'abc', 'a']), ['', 'aabbcc', 'aa']]);
 
 // --------- failed test Cases ------
 //[function Name,  list,  Expected, Actual]
