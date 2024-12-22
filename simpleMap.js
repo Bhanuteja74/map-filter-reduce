@@ -24,11 +24,19 @@ const firstCharactersOf = function (strings) {
   return strings.map(firstChar);
 };
 
+// truth values of [0, 1, 2, 3] => [false, true, true, true]
+// Assume non-zero numbers are true, and zero is false
+const truthyValue = (number) => number !== 0;
+const truthValuesOf = function (numbers) {
+  return numbers.map(truthyValue);
+};
+
 // --------- test Cases --------
 testCases.push([squaresOf, [0, 1, 2, 3, 4], squaresOf([0, 1, 2, 3, 4]), [0, 1, 4, 9, 16]]);
 testCases.push([lengthsOf, ['a', 'ab', '', 'abc'], lengthsOf(['a', 'ab', '', 'abc']), [1, 2, 0, 3]]);
 testCases.push([uppercaseOf, ['a', 'ab', '', 'abc'], uppercaseOf(['a', 'ab', '', 'abc']), ['A', 'AB', '', 'ABC']]);
 testCases.push([firstCharactersOf, ['abc', 'a', ''], firstCharactersOf(['abc', 'a', '']), ['a', 'a', '']]);
+testCases.push([truthValuesOf, ['', 'a', 1, 0, true, false], truthValuesOf(['', 'a', 1, 0, true, false]), [true, true, true, false, true, false]]);
 
 // --------- failed test Cases ------
 //[function Name,  list,  Expected, Actual]
