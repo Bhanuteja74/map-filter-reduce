@@ -74,9 +74,9 @@ const domainNamesOf = function (emails) {
 };
 
 // split words in ["hello world", "goodbye moon"] => [["hello", "world"], ["goodbye", "moon"]]
-const splitWord = (string) => string.split(' ');
+const splitWords = (string) => string.split(' ');
 const splitWordsOf = function (strings) {
-  return strings.map(splitWord);
+  return strings.map(splitWords);
 };
 
 // join arrays of [["a", "b"], ["c", "d"]] => ["ab", "cd"]
@@ -133,12 +133,46 @@ const cumulativeSumsOf = function (arrays) {
 
 // reverse words in ["hello world", "goodbye moon"] => ["olleh dlrow", "eybdoog noom"]
 const reversedSentence = function (word) {
-  return splitWord(word).map(stringReverse);
+  return splitWords(word).map(stringReverse);
 }
 const reversedWordsOf = function (strings) {
   return strings.map(reversedSentence);
 };
 
+// extract unique characters from ["apple", "banana", "grape"] => ["apl", "ban", "gra"]
+// Maintain the order of their first appearance in each string
+const addUniques = (string, char) => string.includes(char) ? string : string + char;
+const uniqueCharacters = function (word) {
+  return [...word].reduce(addUniques, '');
+};
+const uniqueCharactersOf = function (strings) {
+  return strings.map(uniqueCharacters);
+};
+
+// generate ranges from [3, 5, 2] => [[0, 1, 2], [0, 1, 2, 3, 4], [0, 1]]
+const range = function (end) {
+  const numInRange = [];
+
+  for (let num = 0; num < end; num++) {
+    numInRange.push(num);
+  }
+
+  return numInRange;
+};
+
+const rangesOf = function (numbers) {
+  return numbers.map(range);
+};
+
+// capitalize first letters of ["hello world", "goodbye moon"] => ["Hello World", "Goodbye Moon"]
+const capitalizedWord = (word) => word.at(0).toUpperCase() + word.slice(1);
+const capitalize = function (string) {
+  return splitWords(string).map(capitalizedWord).join(' ');
+};
+
+const capitalizedFirstLettersOf = function (strings) {
+  return strings.map(capitalize);
+};
 
 // --------- test Cases --------
 // testCases.push([squaresOf, [0, 1, 2, 3, 4], squaresOf([0, 1, 2, 3, 4]), [0, 1, 4, 9, 16]]);
@@ -154,11 +188,14 @@ const reversedWordsOf = function (strings) {
 // testCases.push([splitWordsOf, ['a', 'a b', 'ab c', ''], splitWordsOf(['a', 'a b', 'ab c', '']), [['a'], ['a', 'b'], ['ab', 'c'], ['']]]);
 // testCases.push([joinedArraysOf, [['a', 'b'], ['a', 'a b'], [' ', 'd']], joinedArraysOf([['a', 'b'], ['a', 'a b'], [' ', 'd']]), ['ab', 'aa b', ' d']]);
 // testCases.push([repeatedStringsOf, ['ab', 'a', ' ', ''], repeatedStringsOf(['ab', 'a', ' ', '']), ['abab', 'aa', '  ', '']]);
-testCases.push([countVowelsOf, ["apple", "banana", "grape"], countVowelsOf(["apple", "banana", "grape"]), [2, 3, 2]]);
-testCases.push([reversedArraysOf, [[1, 2, 3], [4, 5, 6]], reversedArraysOf([[1, 2, 3], [4, 5, 6]]), [[3, 2, 1], [6, 5, 4]]]);
-testCases.push([withoutVowelsOf, ["apple", "banana", "grape"], withoutVowelsOf(["apple", "banana", "grape"]), ["ppl", "bnn", "grp"]]);
-testCases.push([cumulativeSumsOf, [[1, 2, 3], [4, 5, 6]], cumulativeSumsOf([[1, 2, 3], [4, 5, 6]]), [[1, 3, 6], [4, 9, 15]]]);
-testCases.push([reversedWordsOf, ["hello world", "goodbye moon"], reversedWordsOf(["hello world", "goodbye moon"]), ["olleh dlrow", "eybdoog noom"]]);
+// testCases.push([countVowelsOf, ["apple", "banana", "grape"], countVowelsOf(["apple", "banana", "grape"]), [2, 3, 2]]);
+// testCases.push([reversedArraysOf, [[1, 2, 3], [4, 5, 6]], reversedArraysOf([[1, 2, 3], [4, 5, 6]]), [[3, 2, 1], [6, 5, 4]]]);
+// testCases.push([withoutVowelsOf, ["apple", "banana", "grape"], withoutVowelsOf(["apple", "banana", "grape"]), ["ppl", "bnn", "grp"]]);
+// testCases.push([cumulativeSumsOf, [[1, 2, 3], [4, 5, 6]], cumulativeSumsOf([[1, 2, 3], [4, 5, 6]]), [[1, 3, 6], [4, 9, 15]]]);
+// testCases.push([reversedWordsOf, ["hello world", "goodbye moon"], reversedWordsOf(["hello world", "goodbye moon"]), ["olleh dlrow", "eybdoog noom"]]);
+// testCases.push([uniqueCharactersOf, ["apple", "banana", "grape"], uniqueCharactersOf(["apple", "banana", "grape"]), ["aple", "ban", "grape"]]);
+testCases.push([rangesOf, [3, 5, 2], rangesOf([3, 5, 2]), [[0, 1, 2], [0, 1, 2, 3, 4], [0, 1]]]);
+testCases.push([capitalizedFirstLettersOf, ['abc def', 'a bc d'], capitalizedFirstLettersOf(['abc def', 'a bc d']), ['Abc Def', 'A Bc D']]);
 
 // --------- failed test Cases ------
 //[function Name,  list,  Expected, Actual]
