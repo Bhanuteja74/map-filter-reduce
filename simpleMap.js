@@ -12,9 +12,16 @@ const lengthsOf = function (strings) {
   return strings.map(stringLength);
 };
 
+// uppercase of ["hello", "world"] => ["HELLO", "WORLD"]
+const upperCase = (string) => string.toUpperCase();
+const uppercaseOf = function (strings) {
+  return strings.map(upperCase);
+};
+
 // --------- test Cases --------
 testCases.push([squaresOf, [0, 1, 2, 3, 4], squaresOf([0, 1, 2, 3, 4]), [0, 1, 4, 9, 16]]);
 testCases.push([lengthsOf, ['a', 'ab', '', 'abc'], lengthsOf(['a', 'ab', '', 'abc']), [1, 2, 0, 3]]);
+testCases.push([uppercaseOf, ['a', 'ab', '', 'abc'], uppercaseOf(['a', 'ab', '', 'abc']), ['A', 'AB', '', 'ABC']]);
 
 // --------- failed test Cases ------
 //[function Name,  list,  Expected, Actual]
