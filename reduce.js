@@ -20,17 +20,25 @@ testCases.push([productOf, [1, 2, 3], 6, productOf([1, 2, 3], 1)]);
 testCases.push([productOf, [1, 2, 0], 0, productOf([1, 2, 0], 1)]);
 
 // averageOf([1, 2, 3, 4, 5]) => 3
+
 const averageOf = function (numbers) {
   return numbers.reduce(add, 0) / numbers.length;
   // return sumOf(numbers) / numbers.length;
 }
 
-testCases.push([averageOf, [1, 2, 3], 2, averageOf([1, 2, 3])])
-testCases.push([averageOf, [1, 2, 3, 5], 2.75, averageOf([1, 2, 3, 5])])
-testCases.push([averageOf, [1, 2, 3, 0], 1.5, averageOf([1, 2, 3, 0])])
+testCases.push([averageOf, [1, 2, 3], 2, averageOf([1, 2, 3])]);
+testCases.push([averageOf, [1, 2, 3, 5], 2.75, averageOf([1, 2, 3, 5])]);
+testCases.push([averageOf, [1, 2, 3, 0], 1.5, averageOf([1, 2, 3, 0])]);
 
 // minOf([3, 1, 4, 1, 5, 9, 2]) => 1
-const minOf = function (numbers) { }
+
+const minOfTwo = (x, y) => x < y ? x : y;
+const minOf = function (numbers) {
+  return numbers.reduce(minOfTwo, Infinity);
+}
+
+testCases.push([minOf, [10, 2, 5], 2, minOf([10, 2, 5])]);
+testCases.push([minOf, [1, 2, 9, 4, -5], -5, minOf([1, 2, 9, 4, -5])]);
 
 // maxOf([3, 1, 4, 1, 5, 9, 2]) => 9
 const maxOf = function (numbers) { }
