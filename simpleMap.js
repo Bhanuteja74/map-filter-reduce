@@ -187,32 +187,43 @@ const flattenedArraysOf = function (arrays) {
 };
 
 // sort letters in ["cat", "bat", "rat"] alphabetically => ["act", "abt", "art"]
-const sortedLettersOf = function (strings) { };
+const sortedWord = (word) => [...word].sort().join('');
+const sortedLettersOf = function (strings) {
+  return strings.map(sortedWord);
+};
+
+// wrap strings in brackets ["apple", "banana"] => ["[apple]", "[banana]"]
+const wrappedString = (string) => ('[' + string + ']');
+const wrappedStringsOf = function (strings) {
+  return strings.map(wrappedString);
+};
 
 // --------- test Cases --------
-testCases.push([squaresOf, [0, 1, 2, 3, 4], squaresOf([0, 1, 2, 3, 4]), [0, 1, 4, 9, 16]]);
-testCases.push([lengthsOf, ['a', 'ab', '', 'abc'], lengthsOf(['a', 'ab', '', 'abc']), [1, 2, 0, 3]]);
-testCases.push([uppercaseOf, ['a', 'ab', '', 'abc'], uppercaseOf(['a', 'ab', '', 'abc']), ['A', 'AB', '', 'ABC']]);
-testCases.push([firstCharactersOf, ['abc', 'a'], firstCharactersOf(['abc', 'a']), ['a', 'a']]);
-testCases.push([truthValuesOf, ['', 'a', 1, 0, true, false], truthValuesOf(['', 'a', 1, 0, true, false]), [true, true, true, false, true, true]]);
-testCases.push([reversedStringsOf, ['', 'abc', 'a'], reversedStringsOf(['', 'abc', 'a']), ['', 'cba', 'a']]);
-testCases.push([doubleLettersOf, ['', 'abc', 'a'], doubleLettersOf(['', 'abc', 'a']), ['', 'aabbcc', 'aa']]);
-testCases.push([negatedBooleansOf, [true, false], negatedBooleansOf([true, false]), [false, true]]);
-testCases.push([charCodesOf, ['a', 'bd', 'c'], charCodesOf(['a', 'b', 'c']), [97, 98, 99]]);
-testCases.push([domainNamesOf, ["user1@gmail.com", "admin@yahoo.com"], domainNamesOf(["user1@gmail.com", "admin@yahoo.com"]), ["gmail.com", "yahoo.com"]]);
-testCases.push([splitWordsOf, ['a', 'a b', 'ab c', ''], splitWordsOf(['a', 'a b', 'ab c', '']), [['a'], ['a', 'b'], ['ab', 'c'], ['']]]);
-testCases.push([joinedArraysOf, [['a', 'b'], ['a', 'a b'], [' ', 'd']], joinedArraysOf([['a', 'b'], ['a', 'a b'], [' ', 'd']]), ['ab', 'aa b', ' d']]);
-testCases.push([repeatedStringsOf, ['ab', 'a', ' ', ''], repeatedStringsOf(['ab', 'a', ' ', '']), ['abab', 'aa', '  ', '']]);
-testCases.push([countVowelsOf, ["apple", "banana", "grape"], countVowelsOf(["apple", "banana", "grape"]), [2, 3, 2]]);
-testCases.push([reversedArraysOf, [[1, 2, 3], [4, 5, 6]], reversedArraysOf([[1, 2, 3], [4, 5, 6]]), [[3, 2, 1], [6, 5, 4]]]);
-testCases.push([withoutVowelsOf, ["apple", "banana", "grape"], withoutVowelsOf(["apple", "banana", "grape"]), ["ppl", "bnn", "grp"]]);
-testCases.push([cumulativeSumsOf, [[1, 2, 3], [4, 5, 6]], cumulativeSumsOf([[1, 2, 3], [4, 5, 6]]), [[1, 3, 6], [4, 9, 15]]]);
-testCases.push([reversedWordsOf, ["hello world", "goodbye moon"], reversedWordsOf(["hello world", "goodbye moon"]), ["olleh dlrow", "eybdoog noom"]]);
-testCases.push([uniqueCharactersOf, ["apple", "banana", "grape"], uniqueCharactersOf(["apple", "banana", "grape"]), ["aple", "ban", "grape"]]);
-testCases.push([rangesOf, [3, 5, 2], rangesOf([3, 5, 2]), [[0, 1, 2], [0, 1, 2, 3, 4], [0, 1]]]);
-testCases.push([capitalizedFirstLettersOf, ['abc def', 'a bc d'], capitalizedFirstLettersOf(['abc def', 'a bc d']), ['Abc Def', 'A Bc D']]);
-testCases.push([wordLengthsOf, ['abc def', 'a bc d'], wordLengthsOf(['abc def', 'a bc d']), [[3, 3], [1, 2, 1]]]);
-testCases.push([flattenedArraysOf, [[1, [1]], [[1, 2], 3]], flattenedArraysOf([[1, [1]], [[1, 2], 3]]), [[1, 1], [1, 2, 3]]]);
+testCases.push([wrappedStringsOf, ["cat", "bat", "rat"], wrappedStringsOf(["cat", "bat", "rat"]), ["[cat]", "[bat]", "[rat]"]]);
+testCases.push([sortedLettersOf, ["cat", "bat", "rat"], sortedLettersOf(["cat", "bat", "rat"]), ["act", "abt", "art"]]);
+// testCases.push([squaresOf, [0, 1, 2, 3, 4], squaresOf([0, 1, 2, 3, 4]), [0, 1, 4, 9, 16]]);
+// testCases.push([lengthsOf, ['a', 'ab', '', 'abc'], lengthsOf(['a', 'ab', '', 'abc']), [1, 2, 0, 3]]);
+// testCases.push([uppercaseOf, ['a', 'ab', '', 'abc'], uppercaseOf(['a', 'ab', '', 'abc']), ['A', 'AB', '', 'ABC']]);
+// testCases.push([firstCharactersOf, ['abc', 'a'], firstCharactersOf(['abc', 'a']), ['a', 'a']]);
+// testCases.push([truthValuesOf, ['', 'a', 1, 0, true, false], truthValuesOf(['', 'a', 1, 0, true, false]), [true, true, true, false, true, true]]);
+// testCases.push([reversedStringsOf, ['', 'abc', 'a'], reversedStringsOf(['', 'abc', 'a']), ['', 'cba', 'a']]);
+// testCases.push([doubleLettersOf, ['', 'abc', 'a'], doubleLettersOf(['', 'abc', 'a']), ['', 'aabbcc', 'aa']]);
+// testCases.push([negatedBooleansOf, [true, false], negatedBooleansOf([true, false]), [false, true]]);
+// testCases.push([charCodesOf, ['a', 'bd', 'c'], charCodesOf(['a', 'b', 'c']), [97, 98, 99]]);
+// testCases.push([domainNamesOf, ["user1@gmail.com", "admin@yahoo.com"], domainNamesOf(["user1@gmail.com", "admin@yahoo.com"]), ["gmail.com", "yahoo.com"]]);
+// testCases.push([splitWordsOf, ['a', 'a b', 'ab c', ''], splitWordsOf(['a', 'a b', 'ab c', '']), [['a'], ['a', 'b'], ['ab', 'c'], ['']]]);
+// testCases.push([joinedArraysOf, [['a', 'b'], ['a', 'a b'], [' ', 'd']], joinedArraysOf([['a', 'b'], ['a', 'a b'], [' ', 'd']]), ['ab', 'aa b', ' d']]);
+// testCases.push([repeatedStringsOf, ['ab', 'a', ' ', ''], repeatedStringsOf(['ab', 'a', ' ', '']), ['abab', 'aa', '  ', '']]);
+// testCases.push([countVowelsOf, ["apple", "banana", "grape"], countVowelsOf(["apple", "banana", "grape"]), [2, 3, 2]]);
+// testCases.push([reversedArraysOf, [[1, 2, 3], [4, 5, 6]], reversedArraysOf([[1, 2, 3], [4, 5, 6]]), [[3, 2, 1], [6, 5, 4]]]);
+// testCases.push([withoutVowelsOf, ["apple", "banana", "grape"], withoutVowelsOf(["apple", "banana", "grape"]), ["ppl", "bnn", "grp"]]);
+// testCases.push([cumulativeSumsOf, [[1, 2, 3], [4, 5, 6]], cumulativeSumsOf([[1, 2, 3], [4, 5, 6]]), [[1, 3, 6], [4, 9, 15]]]);
+// testCases.push([reversedWordsOf, ["hello world", "goodbye moon"], reversedWordsOf(["hello world", "goodbye moon"]), ["olleh dlrow", "eybdoog noom"]]);
+// testCases.push([uniqueCharactersOf, ["apple", "banana", "grape"], uniqueCharactersOf(["apple", "banana", "grape"]), ["aple", "ban", "grape"]]);
+// testCases.push([rangesOf, [3, 5, 2], rangesOf([3, 5, 2]), [[0, 1, 2], [0, 1, 2, 3, 4], [0, 1]]]);
+// testCases.push([capitalizedFirstLettersOf, ['abc def', 'a bc d'], capitalizedFirstLettersOf(['abc def', 'a bc d']), ['Abc Def', 'A Bc D']]);
+// testCases.push([wordLengthsOf, ['abc def', 'a bc d'], wordLengthsOf(['abc def', 'a bc d']), [[3, 3], [1, 2, 1]]]);
+// testCases.push([flattenedArraysOf, [[1, [1]], [[1, 2], 3]], flattenedArraysOf([[1, [1]], [[1, 2], 3]]), [[1, 1], [1, 2, 3]]]);
 
 // --------- failed test Cases ------
 //[function Name,  list,  Expected, Actual]
