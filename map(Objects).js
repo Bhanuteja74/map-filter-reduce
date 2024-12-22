@@ -43,7 +43,18 @@ const totalPrices = function (objects) {
   return objects.map(totalPrice);
 };
 
+// determine if a person is an adult from [{ name: "Alice", age: 17 }, { name: "Bob", age: 22 }] => [false, true]
+// (age >= 18)
+const isSeventeenAbove = (details) => details.age > 17;
+const isAdult = function (objects) {
+  return objects.map(isSeventeenAbove);
+};
+
+// create abbreviations from [{ city: "New York", country: "USA" }, { city: "Los Angeles", country: "USA" }] => ["NY, USA", "LA, USA"]
+const abbreviations = function (objects) { };
+
 // -------- test Cases --------
+testCases.push([isAdult, [{ name: "Alice", age: 17 }, { name: "Bob", age: 22 }], isAdult([{ name: "Alice", age: 17 }, { name: "Bob", age: 22 }]), [false, true]]);
 testCases.push([totalPrices, [{ price: 10, quantity: 2 }, { price: 5, quantity: 4 }], totalPrices([{ price: 10, quantity: 2 }, { price: 5, quantity: 4 }]), [20, 20]]);
 testCases.push([fullNames, [{ firstName: "Alice", lastName: "Smith" }, { firstName: "Bob", lastName: "Brown" }], fullNames([{ firstName: "Alice", lastName: "Smith" }, { firstName: "Bob", lastName: "Brown" }]), ["Alice Smith", "Bob Brown"]]);
 testCases.push([extractFlags, [{ active: true }, { active: false }], extractFlags([{ active: true }, { active: false }]), [true, false]]);
