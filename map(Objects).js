@@ -24,7 +24,29 @@ const calculateAreas = function (rectangles) {
   return rectangles.map(rectangleArea);
 };
 
+// extract boolean flags from [{ active: true }, { active: false }] => [true, false]
+const getBooleanFlag = (object) => object.active;
+const extractFlags = function (objects) {
+  return objects.map(getBooleanFlag);
+};
+
+// concatenate first and last names from [{ firstName: "Alice", lastName: "Smith" }, { firstName: "Bob", lastName: "Brown" }] => ["Alice Smith", "Bob Brown"]
+const fullName = (name) => [name.firstName, name.lastName].join(' ');
+const fullNames = function (objects) {
+  return objects.map(fullName);
+};
+
+// calculate total prices from [{ price: 10, quantity: 2 }, { price: 5, quantity: 4 }] => [20, 20]
+// (price * quantity)
+const totalPrice = (details) => details.price * details.quantity;
+const totalPrices = function (objects) {
+  return objects.map(totalPrice);
+};
+
 // -------- test Cases --------
+testCases.push([totalPrices, [{ price: 10, quantity: 2 }, { price: 5, quantity: 4 }], totalPrices([{ price: 10, quantity: 2 }, { price: 5, quantity: 4 }]), [20, 20]]);
+testCases.push([fullNames, [{ firstName: "Alice", lastName: "Smith" }, { firstName: "Bob", lastName: "Brown" }], fullNames([{ firstName: "Alice", lastName: "Smith" }, { firstName: "Bob", lastName: "Brown" }]), ["Alice Smith", "Bob Brown"]]);
+testCases.push([extractFlags, [{ active: true }, { active: false }], extractFlags([{ active: true }, { active: false }]), [true, false]]);
 testCases.push([calculateAreas, [{ width: 2, height: 3 }, { width: 4, height: 5 }], calculateAreas([{ width: 2, height: 3 }, { width: 4, height: 5 }]), [6, 20]]);
 testCases.push([firstLettersOfNames, [{ name: "Alice" }, { name: "Bob" }], firstLettersOfNames([{ name: "Alice" }, { name: "Bob" }]), ["A", "B"]]);
 testCases.push([extractAges, [{ age: 25 }, { age: 30 }], extractAges([{ age: 25 }, { age: 30 }]), [25, 30]]);
