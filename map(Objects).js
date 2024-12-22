@@ -12,7 +12,14 @@ const extractAges = function (objects) {
   return objects.map(getAge);
 };
 
+// extract the first letters of names from [{ name: "Alice" }, { name: "Bob" }] => ["A", "B"]
+const firstCharOfName = (object) => object.name.at(0);
+const firstLettersOfNames = function (objects) {
+  return objects.map(firstCharOfName);
+};
+
 // -------- test Cases --------
+testCases.push([firstLettersOfNames, [{ name: "Alice" }, { name: "Bob" }], firstLettersOfNames([{ name: "Alice" }, { name: "Bob" }]), ["A", "B"]]);
 testCases.push([extractAges, [{ age: 25 }, { age: 30 }], extractAges([{ age: 25 }, { age: 30 }]), [25, 30]]);
 testCases.push([extractNames, [{ name: "Alice" }, { name: "Bob" }], extractNames([{ name: "Alice" }, { name: "Bob" }]), ["Alice", "Bob"]]);
 
