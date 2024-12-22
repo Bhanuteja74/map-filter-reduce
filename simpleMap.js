@@ -174,6 +174,12 @@ const capitalizedFirstLettersOf = function (strings) {
   return strings.map(capitalize);
 };
 
+// find word lengths in ["apple pie", "banana split"] => [[5, 3], [6, 5]]
+const wordLengths = (string) => splitWords(string).map(stringLength);
+const wordLengthsOf = function (strings) {
+  return strings.map(wordLengths);
+};
+
 // --------- test Cases --------
 // testCases.push([squaresOf, [0, 1, 2, 3, 4], squaresOf([0, 1, 2, 3, 4]), [0, 1, 4, 9, 16]]);
 // testCases.push([lengthsOf, ['a', 'ab', '', 'abc'], lengthsOf(['a', 'ab', '', 'abc']), [1, 2, 0, 3]]);
@@ -196,6 +202,7 @@ const capitalizedFirstLettersOf = function (strings) {
 // testCases.push([uniqueCharactersOf, ["apple", "banana", "grape"], uniqueCharactersOf(["apple", "banana", "grape"]), ["aple", "ban", "grape"]]);
 testCases.push([rangesOf, [3, 5, 2], rangesOf([3, 5, 2]), [[0, 1, 2], [0, 1, 2, 3, 4], [0, 1]]]);
 testCases.push([capitalizedFirstLettersOf, ['abc def', 'a bc d'], capitalizedFirstLettersOf(['abc def', 'a bc d']), ['Abc Def', 'A Bc D']]);
+testCases.push([wordLengthsOf, ['abc def', 'a bc d'], wordLengthsOf(['abc def', 'a bc d']), [[3, 3], [1, 2, 1]]]);
 
 // --------- failed test Cases ------
 //[function Name,  list,  Expected, Actual]
