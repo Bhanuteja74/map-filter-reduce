@@ -44,6 +44,11 @@ const doubleLettersOf = function (strings) {
   return strings.map(doubleLetterString);
 };
 
+// boolean negation of [true, false, true] => [false, true, false]
+const negatedBooleansOf = function (booleans) {
+  return booleans.map((boolean) => !boolean);
+};
+
 // --------- test Cases --------
 testCases.push([squaresOf, [0, 1, 2, 3, 4], squaresOf([0, 1, 2, 3, 4]), [0, 1, 4, 9, 16]]);
 testCases.push([lengthsOf, ['a', 'ab', '', 'abc'], lengthsOf(['a', 'ab', '', 'abc']), [1, 2, 0, 3]]);
@@ -52,6 +57,7 @@ testCases.push([firstCharactersOf, ['abc', 'a', ''], firstCharactersOf(['abc', '
 testCases.push([truthValuesOf, ['', 'a', 1, 0, true, false], truthValuesOf(['', 'a', 1, 0, true, false]), [true, true, true, false, true, false]]);
 testCases.push([reversedStringsOf, ['', 'abc', 'a'], reversedStringsOf(['', 'abc', 'a']), ['', 'cba', 'a']]);
 testCases.push([doubleLettersOf, ['', 'abc', 'a'], doubleLettersOf(['', 'abc', 'a']), ['', 'aabbcc', 'aa']]);
+testCases.push([negatedBooleansOf, [true, false], negatedBooleansOf([true, false]), [false, true]]);
 
 // --------- failed test Cases ------
 //[function Name,  list,  Expected, Actual]
