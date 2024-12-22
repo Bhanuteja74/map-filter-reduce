@@ -41,7 +41,14 @@ testCases.push([minOf, [10, 2, 5], 2, minOf([10, 2, 5])]);
 testCases.push([minOf, [1, 2, 9, 4, -5], -5, minOf([1, 2, 9, 4, -5])]);
 
 // maxOf([3, 1, 4, 1, 5, 9, 2]) => 9
-const maxOf = function (numbers) { }
+
+const maxOfTwo = (x, y) => x > y ? x : y;
+const maxOf = function (numbers) {
+  return numbers.reduce(maxOfTwo, -Infinity);
+}
+
+testCases.push([maxOf, [10, 2, 5], 10, maxOf([10, 2, 5])]);
+testCases.push([maxOf, [1, 2, 9, 4, -5], 9, maxOf([1, 2, 9, 4, -5])]);
 
 // sumPositiveNumbers([1, -2, 3, -4]) => 4
 const sumPositiveNumbers = function (numbers) { }
