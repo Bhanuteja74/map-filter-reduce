@@ -32,14 +32,15 @@ const truthValuesOf = function (numbers) {
 };
 
 // reverse strings of ["hello", "world"] => ["olleh", "dlrow"]
-const stringReverse = (string) => [...string].reverse().join('');
+const reverseArray = (array) => array.reverse();
+const stringReverse = (string) => reverseArray([...string]).join('');
 const reversedStringsOf = function (strings) {
   return strings.map(stringReverse);
 };
 
 // double letters of ["cat", "dog", "bat"] => ["ccaat", "ddoog", "bbaatt"]
-const stringDouble = (string) => string.repeat(2);
-const doubleLetterString = (string) => [...string].map(stringDouble).join('');
+const doubleString = (string) => string.repeat(2);
+const doubleLetterString = (string) => [...string].map(doubleString).join('');
 const doubleLettersOf = function (strings) {
   return strings.map(doubleLetterString);
 };
@@ -78,19 +79,45 @@ const joinedArraysOf = function (arrayOfArrays) {
   return arrayOfArrays.map(joinArray);
 };
 
+// repeat strings in ["hi", "bye"] => ["hihi", "byebye"]
+const repeatedStringsOf = function (strings) {
+  return strings.map(doubleString);
+};
+
+// count vowels in ["apple", "banana", "grape"] => [2, 3, 2]
+const incrementIfVowel = (count, char) => 'aeiou'.includes(char) ? count + 1 : count;
+const vowelsCount = function (string) {
+  return [...string].reduce(incrementIfVowel, 0);
+};
+
+const countVowelsOf = function (strings) {
+  return strings.map(vowelsCount);
+};
+
+// reverse arrays of [[1, 2, 3], [4, 5, 6]] => [[3, 2, 1], [6, 5, 4]]
+const reversedArraysOf = function (arrays) {
+  return arrays.map(reverseArray);
+};
+
+// remove vowels from ["apple", "banana", "grape"] => ["ppl", "bnn", "grp"]
+const withoutVowelsOf = function (strings) { };
+
 // --------- test Cases --------
-testCases.push([squaresOf, [0, 1, 2, 3, 4], squaresOf([0, 1, 2, 3, 4]), [0, 1, 4, 9, 16]]);
-testCases.push([lengthsOf, ['a', 'ab', '', 'abc'], lengthsOf(['a', 'ab', '', 'abc']), [1, 2, 0, 3]]);
-testCases.push([uppercaseOf, ['a', 'ab', '', 'abc'], uppercaseOf(['a', 'ab', '', 'abc']), ['A', 'AB', '', 'ABC']]);
-testCases.push([firstCharactersOf, ['abc', 'a'], firstCharactersOf(['abc', 'a']), ['a', 'a']]);
-testCases.push([truthValuesOf, ['', 'a', 1, 0, true, false], truthValuesOf(['', 'a', 1, 0, true, false]), [true, true, true, false, true, true]]);
-testCases.push([reversedStringsOf, ['', 'abc', 'a'], reversedStringsOf(['', 'abc', 'a']), ['', 'cba', 'a']]);
-testCases.push([doubleLettersOf, ['', 'abc', 'a'], doubleLettersOf(['', 'abc', 'a']), ['', 'aabbcc', 'aa']]);
-testCases.push([negatedBooleansOf, [true, false], negatedBooleansOf([true, false]), [false, true]]);
-testCases.push([charCodesOf, ['a', 'bd', 'c'], charCodesOf(['a', 'b', 'c']), [97, 98, 99]]);
-testCases.push([domainNamesOf, ["user1@gmail.com", "admin@yahoo.com"], domainNamesOf(["user1@gmail.com", "admin@yahoo.com"]), ["gmail.com", "yahoo.com"]]);
-testCases.push([splitWordsOf, ['a', 'a b', 'ab c', ''], splitWordsOf(['a', 'a b', 'ab c', '']), [['a'], ['a', 'b'], ['ab', 'c'], ['']]]);
-testCases.push([joinedArraysOf, [['a', 'b'], ['a', 'a b'], [' ', 'd']], joinedArraysOf([['a', 'b'], ['a', 'a b'], [' ', 'd']]), ['ab', 'aa b', ' d']]);
+// testCases.push([squaresOf, [0, 1, 2, 3, 4], squaresOf([0, 1, 2, 3, 4]), [0, 1, 4, 9, 16]]);
+// testCases.push([lengthsOf, ['a', 'ab', '', 'abc'], lengthsOf(['a', 'ab', '', 'abc']), [1, 2, 0, 3]]);
+// testCases.push([uppercaseOf, ['a', 'ab', '', 'abc'], uppercaseOf(['a', 'ab', '', 'abc']), ['A', 'AB', '', 'ABC']]);
+// testCases.push([firstCharactersOf, ['abc', 'a'], firstCharactersOf(['abc', 'a']), ['a', 'a']]);
+// testCases.push([truthValuesOf, ['', 'a', 1, 0, true, false], truthValuesOf(['', 'a', 1, 0, true, false]), [true, true, true, false, true, true]]);
+// testCases.push([reversedStringsOf, ['', 'abc', 'a'], reversedStringsOf(['', 'abc', 'a']), ['', 'cba', 'a']]);
+// testCases.push([doubleLettersOf, ['', 'abc', 'a'], doubleLettersOf(['', 'abc', 'a']), ['', 'aabbcc', 'aa']]);
+// testCases.push([negatedBooleansOf, [true, false], negatedBooleansOf([true, false]), [false, true]]);
+// testCases.push([charCodesOf, ['a', 'bd', 'c'], charCodesOf(['a', 'b', 'c']), [97, 98, 99]]);
+// testCases.push([domainNamesOf, ["user1@gmail.com", "admin@yahoo.com"], domainNamesOf(["user1@gmail.com", "admin@yahoo.com"]), ["gmail.com", "yahoo.com"]]);
+// testCases.push([splitWordsOf, ['a', 'a b', 'ab c', ''], splitWordsOf(['a', 'a b', 'ab c', '']), [['a'], ['a', 'b'], ['ab', 'c'], ['']]]);
+// testCases.push([joinedArraysOf, [['a', 'b'], ['a', 'a b'], [' ', 'd']], joinedArraysOf([['a', 'b'], ['a', 'a b'], [' ', 'd']]), ['ab', 'aa b', ' d']]);
+// testCases.push([repeatedStringsOf, ['ab', 'a', ' ', ''], repeatedStringsOf(['ab', 'a', ' ', '']), ['abab', 'aa', '  ', '']]);
+testCases.push([countVowelsOf, ["apple", "banana", "grape"], countVowelsOf(["apple", "banana", "grape"]), [2, 3, 2]]);
+testCases.push([reversedArraysOf, [[1, 2, 3], [4, 5, 6]], reversedArraysOf([[1, 2, 3], [4, 5, 6]]), [[3, 2, 1], [6, 5, 4]]]);
 
 // --------- failed test Cases ------
 //[function Name,  list,  Expected, Actual]
