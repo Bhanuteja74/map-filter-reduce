@@ -1,5 +1,17 @@
+// const consoleLog = console.log;
+// console.log = function () { };
+// console.log = consoleLog;
+
 // sumOf([1, 2, 3, 4]) => 10
-const sumOf = function (numbers) { }
+
+const testCases = [];
+
+const add = (x, y) => x + y;
+const sumOf = function (numbers) {
+  return numbers.reduce(add, 0);
+}
+
+testCases.push([sumOf, [1, 2, 3, 0], 6, sumOf([1, 2, 3, 0])]);
 
 // productOf([1, 2, 3, 4]) => 24
 const productOf = function (numbers) { }
@@ -165,3 +177,25 @@ const findMinMax = function (numbers) { }
 
 // sumByCategory([{ category: 'A', value: 10 }, { category: 'B', value: 20 }, { category: 'A', value: 30 }]) => { A: 40, B: 20 }
 const sumByCategory = function (items) { }
+
+
+// Failed Test Cases
+//[function Name,  list,  Expected, Actual]
+const failed = [];
+
+testCases.forEach(function ([fun, input, expected, actual]) {
+
+  if (actual !== expected) {
+    failed.push({
+      FUNCTION: fun, 'GIVEN LIST': input,
+      EXPECTED: expected, ACTUAL: actual
+    });
+  }
+
+});
+
+if (failed.length === 0) {
+  failed.push({ Status: 'All Pass' })
+}
+
+console.table(failed);  
