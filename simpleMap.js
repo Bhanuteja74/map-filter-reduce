@@ -49,6 +49,17 @@ const negatedBooleansOf = function (booleans) {
   return booleans.map((boolean) => !boolean);
 };
 
+// character codes of ["a", "b", "c"] => [97, 98, 99]
+// Use the `charCodeAt` method on each string
+const charCodesOf = function (strings) {
+  return strings.map((char) => char.charCodeAt());
+};
+
+// extract domain names from ["user1@gmail.com", "admin@yahoo.com"] => ["gmail.com", "yahoo.com"]
+const domainNamesOf = function (emails) {
+  return emails.map((email) => email.split('@').at(-1));
+};
+
 // --------- test Cases --------
 testCases.push([squaresOf, [0, 1, 2, 3, 4], squaresOf([0, 1, 2, 3, 4]), [0, 1, 4, 9, 16]]);
 testCases.push([lengthsOf, ['a', 'ab', '', 'abc'], lengthsOf(['a', 'ab', '', 'abc']), [1, 2, 0, 3]]);
@@ -58,13 +69,37 @@ testCases.push([truthValuesOf, ['', 'a', 1, 0, true, false], truthValuesOf(['', 
 testCases.push([reversedStringsOf, ['', 'abc', 'a'], reversedStringsOf(['', 'abc', 'a']), ['', 'cba', 'a']]);
 testCases.push([doubleLettersOf, ['', 'abc', 'a'], doubleLettersOf(['', 'abc', 'a']), ['', 'aabbcc', 'aa']]);
 testCases.push([negatedBooleansOf, [true, false], negatedBooleansOf([true, false]), [false, true]]);
+testCases.push([charCodesOf, ['a', 'bd', 'c'], charCodesOf(['a', 'b', 'c']), [97, 98, 99]]);
+testCases.push([domainNamesOf, ["user1@gmail.com", "admin@yahoo.com"], domainNamesOf(["user1@gmail.com", "admin@yahoo.com"]), ["gmail.com", "yahoo.com"]]);
 
 // --------- failed test Cases ------
 //[function Name,  list,  Expected, Actual]
 const failed = [];
 
+function areArraysEqual(array1, array2) {
+  if (array1.length !== array2.length) {
+    return false;
+  }
+
+  for (let index = 0; index < array1.length; index++) {
+    if (array1[index] !== array2[index]) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+
+const areEqual = function (elementOne, elementTwo) {
+  if (typeof (elementOne) === 'object') {
+    return areArraysEqual(elementOne, elementTwo);
+  }
+  return elementOne === elementTwo;
+}
+
 testCases.forEach(function ([fun, input, expected, actual]) {
-  if (actual !== expected) {
+  if (!areEqual(actual, expected)) {
     failed.push({
       FUNCTION: fun, 'GIVEN LIST': input, EXPECTED: expected, ACTUAL: actual
     });
