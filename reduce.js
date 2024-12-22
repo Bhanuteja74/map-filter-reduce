@@ -1,7 +1,3 @@
-// const consoleLog = console.log;
-// console.log = function () { };
-// console.log = consoleLog;
-
 // sumOf([1, 2, 3, 4]) => 10
 
 const testCases = [];
@@ -12,12 +8,22 @@ const sumOf = function (numbers) {
 }
 
 testCases.push([sumOf, [1, 2, 3, 0], 6, sumOf([1, 2, 3, 0])]);
+testCases.push([sumOf, [1, 2, 3, 4], 10, sumOf([1, 2, 3, 4])]);
 
 // productOf([1, 2, 3, 4]) => 24
-const productOf = function (numbers) { }
+const product = (x, y) => x * y;
+const productOf = function (numbers) {
+  return numbers.reduce(product, 1);
+}
+
+testCases.push([productOf, [1, 2, 3], 6, productOf([1, 2, 3], 1)]);
+testCases.push([productOf, [1, 2, 0], 0, productOf([1, 2, 0], 1)]);
 
 // averageOf([1, 2, 3, 4, 5]) => 3
-const averageOf = function (numbers) { }
+const averageOf = function (numbers) {
+  return numbers.reduce(add, 0) / numbers.length;
+  // return sumOf(numbers) / numbers.length;
+}
 
 // minOf([3, 1, 4, 1, 5, 9, 2]) => 1
 const minOf = function (numbers) { }
