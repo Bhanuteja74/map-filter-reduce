@@ -131,6 +131,15 @@ const cumulativeSumsOf = function (arrays) {
   return arrays.map(runningTotal);
 };
 
+// reverse words in ["hello world", "goodbye moon"] => ["olleh dlrow", "eybdoog noom"]
+const reversedSentence = function (word) {
+  return splitWord(word).map(stringReverse);
+}
+const reversedWordsOf = function (strings) {
+  return strings.map(reversedSentence);
+};
+
+
 // --------- test Cases --------
 // testCases.push([squaresOf, [0, 1, 2, 3, 4], squaresOf([0, 1, 2, 3, 4]), [0, 1, 4, 9, 16]]);
 // testCases.push([lengthsOf, ['a', 'ab', '', 'abc'], lengthsOf(['a', 'ab', '', 'abc']), [1, 2, 0, 3]]);
@@ -149,6 +158,7 @@ testCases.push([countVowelsOf, ["apple", "banana", "grape"], countVowelsOf(["app
 testCases.push([reversedArraysOf, [[1, 2, 3], [4, 5, 6]], reversedArraysOf([[1, 2, 3], [4, 5, 6]]), [[3, 2, 1], [6, 5, 4]]]);
 testCases.push([withoutVowelsOf, ["apple", "banana", "grape"], withoutVowelsOf(["apple", "banana", "grape"]), ["ppl", "bnn", "grp"]]);
 testCases.push([cumulativeSumsOf, [[1, 2, 3], [4, 5, 6]], cumulativeSumsOf([[1, 2, 3], [4, 5, 6]]), [[1, 3, 6], [4, 9, 15]]]);
+testCases.push([reversedWordsOf, ["hello world", "goodbye moon"], reversedWordsOf(["hello world", "goodbye moon"]), ["olleh dlrow", "eybdoog noom"]]);
 
 // --------- failed test Cases ------
 //[function Name,  list,  Expected, Actual]
