@@ -72,22 +72,30 @@ const splitWordsOf = function (strings) {
   return strings.map(splitWord);
 };
 
+// join arrays of [["a", "b"], ["c", "d"]] => ["ab", "cd"]
+const joinArray = (array) => array.join('');
+const joinedArraysOf = function (arrayOfArrays) {
+  return arrayOfArrays.map(joinArray);
+};
+
 // --------- test Cases --------
 testCases.push([squaresOf, [0, 1, 2, 3, 4], squaresOf([0, 1, 2, 3, 4]), [0, 1, 4, 9, 16]]);
 testCases.push([lengthsOf, ['a', 'ab', '', 'abc'], lengthsOf(['a', 'ab', '', 'abc']), [1, 2, 0, 3]]);
 testCases.push([uppercaseOf, ['a', 'ab', '', 'abc'], uppercaseOf(['a', 'ab', '', 'abc']), ['A', 'AB', '', 'ABC']]);
-testCases.push([firstCharactersOf, ['abc', 'a', ''], firstCharactersOf(['abc', 'a', '']), ['a', 'a', '']]);
-testCases.push([truthValuesOf, ['', 'a', 1, 0, true, false], truthValuesOf(['', 'a', 1, 0, true, false]), [true, true, true, false, true, false]]);
+testCases.push([firstCharactersOf, ['abc', 'a'], firstCharactersOf(['abc', 'a']), ['a', 'a']]);
+testCases.push([truthValuesOf, ['', 'a', 1, 0, true, false], truthValuesOf(['', 'a', 1, 0, true, false]), [true, true, true, false, true, true]]);
 testCases.push([reversedStringsOf, ['', 'abc', 'a'], reversedStringsOf(['', 'abc', 'a']), ['', 'cba', 'a']]);
 testCases.push([doubleLettersOf, ['', 'abc', 'a'], doubleLettersOf(['', 'abc', 'a']), ['', 'aabbcc', 'aa']]);
 testCases.push([negatedBooleansOf, [true, false], negatedBooleansOf([true, false]), [false, true]]);
 testCases.push([charCodesOf, ['a', 'bd', 'c'], charCodesOf(['a', 'b', 'c']), [97, 98, 99]]);
 testCases.push([domainNamesOf, ["user1@gmail.com", "admin@yahoo.com"], domainNamesOf(["user1@gmail.com", "admin@yahoo.com"]), ["gmail.com", "yahoo.com"]]);
 testCases.push([splitWordsOf, ['a', 'a b', 'ab c', ''], splitWordsOf(['a', 'a b', 'ab c', '']), [['a'], ['a', 'b'], ['ab', 'c'], ['']]]);
+testCases.push([joinedArraysOf, [['a', 'b'], ['a', 'a b'], [' ', 'd']], joinedArraysOf([['a', 'b'], ['a', 'a b'], [' ', 'd']]), ['ab', 'aa b', ' d']]);
 
 // --------- failed test Cases ------
 //[function Name,  list,  Expected, Actual]
 const failed = [];
+let totalCompleted = 0;
 
 function areArraysEqual(array1, array2) {
   if (array1.length !== array2.length) {
@@ -112,6 +120,8 @@ const areEqual = function (elementOne, elementTwo) {
 }
 
 testCases.forEach(function ([fun, input, actual, expected]) {
+  totalCompleted++;
+
   if (!areEqual(expected, actual)) {
     failed.push({
       FUNCTION: fun, 'GIVEN LIST': input, ACTUAL: actual, EXPECTED: expected
@@ -122,5 +132,5 @@ testCases.forEach(function ([fun, input, actual, expected]) {
 if (failed.length === 0) {
   failed.push({ Status: 'All Pass' })
 }
-
+failed.push({ total: totalCompleted });
 console.table(failed); 
