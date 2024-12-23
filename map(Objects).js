@@ -13,7 +13,8 @@ const extractAges = function (objects) {
 };
 
 // extract the first letters of names from [{ name: "Alice" }, { name: "Bob" }] => ["A", "B"]
-const firstCharOfName = (object) => object.name.at(0);
+const firstChar = (word) => word.at(0);
+const firstCharOfName = (object) => firstChar(object.name);
 const firstLettersOfNames = function (objects) {
   return objects.map(firstCharOfName);
 };
@@ -51,9 +52,36 @@ const isAdult = function (objects) {
 };
 
 // create abbreviations from [{ city: "New York", country: "USA" }, { city: "Los Angeles", country: "USA" }] => ["NY, USA", "LA, USA"]
-const abbreviations = function (objects) { };
+const separateWords = (string) => string.split(' ');
+const firstChars = (words) => separateWords(words).map(firstChar).join('');
+const abbreviation = function (object) {
+  return [firstChars(object.city), object.country].join(', ');
+};
+const abbreviations = function (objects) {
+  return objects.map(abbreviation)
+};
+
+// extract scores for math tests from [{ name: "Alice", scores: { math: 90, english: 85 } }, { name: "Bob", scores: { math: 80, english: 75 } }] => [90, 80]
+const mathMarks = (object) => object.scores.math;
+const mathScores = function (objects) {
+  return objects.map(mathMarks);
+};
+
+// extract coordinates from [{ x: 1, y: 2 }, { x: 3, y: 4 }] => [[1, 2], [3, 4]]
+const extractCoordinates = function (objects) {
+  return objects.map((object) => [object.x, object.y])
+};
+
+// extract full name and age from [{ firstName: "Alice", lastName: "Smith", age: 25 }, { firstName: "Bob", lastName: "Brown", age: 30 }] => [["Alice Smith", 25], ["Bob Brown", 30]]
+const fullNameAndAge = function (objects) {
+  return objects.map((object) => [[object.firstName, object.lastName].join(' '), object.age]);
+};
 
 // -------- test Cases --------
+testCases.push([fullNameAndAge, [{ firstName: "Alice", lastName: "Smith", age: 25 }, { firstName: "Bob", lastName: "Brown", age: 30 }], fullNameAndAge([{ firstName: "Alice", lastName: "Smith", age: 25 }, { firstName: "Bob", lastName: "Brown", age: 30 }]), [["Alice Smith", 25], ["Bob Brown", 30]]]);
+testCases.push([extractCoordinates, [{ x: 1, y: 2 }, { x: 3, y: 4 }], extractCoordinates([{ x: 1, y: 2 }, { x: 3, y: 4 }]), [[1, 2], [3, 4]]]);
+testCases.push([mathScores, [{ name: "Alice", scores: { math: 90, english: 85 } }, { name: "Bob", scores: { math: 80, english: 75 } }], mathScores([{ name: "Alice", scores: { math: 90, english: 85 } }, { name: "Bob", scores: { math: 80, english: 75 } }]), [90, 80]]);
+testCases.push([abbreviations, [{ city: "New York", country: "USA" }, { city: "Los Angeles", country: "USA" }], abbreviations([{ city: "New York", country: "USA" }, { city: "Los Angeles", country: "USA" }]), ["NY, USA", "LA, USA"]]);
 testCases.push([isAdult, [{ name: "Alice", age: 17 }, { name: "Bob", age: 22 }], isAdult([{ name: "Alice", age: 17 }, { name: "Bob", age: 22 }]), [false, true]]);
 testCases.push([totalPrices, [{ price: 10, quantity: 2 }, { price: 5, quantity: 4 }], totalPrices([{ price: 10, quantity: 2 }, { price: 5, quantity: 4 }]), [20, 20]]);
 testCases.push([fullNames, [{ firstName: "Alice", lastName: "Smith" }, { firstName: "Bob", lastName: "Brown" }], fullNames([{ firstName: "Alice", lastName: "Smith" }, { firstName: "Bob", lastName: "Brown" }]), ["Alice Smith", "Bob Brown"]]);
@@ -103,5 +131,6 @@ testCases.forEach(function ([fun, input, actual, expected]) {
 if (failed.length === 0) {
   failed.push({ Status: 'All Pass' })
 }
+
 failed.push({ total: totalCompleted });
 console.table(failed); 
